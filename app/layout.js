@@ -1,8 +1,9 @@
-import Header from '@/components/header'
-import { Inter } from 'next/font/google'
-import './globals.css'
-import { ClerkProvider } from '@clerk/nextjs'
 import { CreateEventDrawer } from '@/components/create-event'
+import Header from '@/components/header'
+import { ClerkProvider } from '@clerk/nextjs'
+import { Inter } from 'next/font/google'
+import { Suspense } from 'react'
+import './globals.css'
 
 export const metadata = {
 	title: 'Scheduler',
@@ -27,7 +28,9 @@ export default function RootLayout({ children }) {
 							<p>Made by Hrebeniuk</p>
 						</div>
 					</footer>
-					<CreateEventDrawer />
+					<Suspense fallback={<div>Loading...</div>}>
+						<CreateEventDrawer />
+					</Suspense>
 				</body>
 			</html>
 		</ClerkProvider>
